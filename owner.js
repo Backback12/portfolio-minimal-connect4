@@ -21,8 +21,6 @@ const GRID_ROWS = 6;
 const PUBLIC_TURN_VALUE = 1;
 const OWNER_TURN_VALUE = 2;
 
-// Server board format:
-// row 0 is always the TOP row.
 const SERVER_ROW_ZERO_IS_TOP = true;
 
 const GAME_STATE_URL = SUPABASE_URL
@@ -33,69 +31,20 @@ const EDGE_FUNCTION_URL = SUPABASE_URL
   ? `${SUPABASE_URL}/functions/v1/connect4`
   : null;
 
-const loginPanel =
-  document.getElementById('login-panel');
-
-const gamePanel =
-  document.getElementById('game-panel');
-
-const passwordInput =
-  document.getElementById('password');
-
-const unlockButton =
-  document.getElementById('unlock');
-
-const loginMessage =
-  document.getElementById('login-message');
-
-const statusElement =
-  document.getElementById('status');
-
-const boardElement =
-  document.getElementById('board');
-
-const publicScoreElement =
-  document.getElementById('public-score');
-
-const ownerScoreElement =
-  document.getElementById('owner-score');
-
-const ownerControls =
-  document.getElementById('owner-controls');
-
-const columnInput =
-  document.getElementById('column');
-
-const moveButton =
-  document.getElementById('move');
-
-const messageElement =
-  document.getElementById('message');
-
-/* -------------------------------------------------------------------------- */
-/*                              OWNER PHRASE UI                               */
-/* -------------------------------------------------------------------------- */
-
-const ownerPhraseRow = document.createElement('div');
-
-ownerPhraseRow.className = 'row';
-
-ownerPhraseRow.innerHTML = `
-  <label for="owner-phrase">phrase:</label>
-  <input
-    id="owner-phrase"
-    type="password"
-    autocomplete="off"
-  >
-`;
-
-loginPanel.insertBefore(
-  ownerPhraseRow,
-  loginMessage
-);
-
-const ownerPhraseInput =
-  document.getElementById('owner-phrase');
+const loginPanel = document.getElementById('login-panel');
+const gamePanel = document.getElementById('game-panel');
+const passwordInput = document.getElementById('password');
+const unlockButton = document.getElementById('unlock');
+const loginMessage = document.getElementById('login-message');
+const statusElement = document.getElementById('status');
+const boardElement = document.getElementById('board');
+const publicScoreElement = document.getElementById('public-score');
+const ownerScoreElement = document.getElementById('owner-score');
+const ownerControls = document.getElementById('owner-controls');
+const columnInput = document.getElementById('column');
+const moveButton = document.getElementById('move');
+const messageElement = document.getElementById('message');
+const ownerPhraseInput = document.getElementById('owner-phrase');
 
 /* -------------------------------------------------------------------------- */
 /*                                  STATE                                     */
@@ -447,7 +396,7 @@ function render() {
     currentTurn === OWNER_TURN_VALUE
   ) {
     statusElement.textContent =
-      "OWNER'S TURN";
+      "YOUR TURN";
 
     ownerControls.hidden = false;
     return;

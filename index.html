@@ -132,8 +132,14 @@
     <section id="login-panel" class="panel" aria-labelledby="login-title">
       <h1 id="login-title">Connect4 - Connor's Side</h1>
       <div class="row">
-        <label for="password"></label>
-        <input id="password" autocomplete="off" autofocus>
+        <label for="password">access:</label>
+        <input id="password" type="password" autocomplete="off" autofocus>
+      </div>
+      <div class="row">
+        <label for="owner-phrase">phrase:</label>
+        <input id="owner-phrase" type="password" autocomplete="off">
+      </div>
+      <div class="row">
         <button id="unlock" type="button">enter</button>
       </div>
       <p id="login-message" aria-live="polite"></p>
@@ -146,8 +152,8 @@
 
       <div id="scores">
         scores:<br>
-        public: <span id="public-score">0</span><br>
-        owner: <span id="owner-score">0</span>
+        public [X]: <span id="public-score">0</span><br>
+        Connor [O]: <span id="owner-score">0</span>
       </div>
 
       <div id="owner-controls" class="panel" hidden>
