@@ -8,8 +8,8 @@
   <style>
     :root {
       font-family: Courier, monospace;
-      background: #000;
-      color: #008800;
+      background: #000000;
+      color: #008000;
     }
 
     * {
@@ -26,8 +26,8 @@
     body {
       min-height: 100vh;
       overflow: hidden;
-      background: #000;
-      color: #00FF00;
+      background: #000000;
+      color: #008000;
       display: grid;
       place-items: center;
     }
@@ -66,9 +66,9 @@
     input,
     button {
       font: inherit;
-      color: #00ff66;
+      color: #008000;
       background: #000;
-      border: 1px solid #00ff66;
+      border: 1px solid #008000;
       border-radius: 0;
     }
 
@@ -78,8 +78,14 @@
       outline: none;
     }
 
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
     input:focus {
-      box-shadow: 0 0 0 1px #00ff66;
+      box-shadow: 0 0 0 1px #008000;
     }
 
     button {
@@ -89,7 +95,7 @@
 
     button:hover,
     button:focus-visible {
-      background: #00ff66;
+      background: #008000;
       color: #000;
       outline: none;
     }
@@ -124,16 +130,11 @@
 <body>
   <main>
     <section id="login-panel" class="panel" aria-labelledby="login-title">
-      <h1 id="login-title">Connect Four Owner</h1>
+      <h1 id="login-title">Connect4 - Connor's Side</h1>
       <div class="row">
-        <label for="password">pwd:</label>
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          autofocus
-        >
-        <button id="unlock" type="button">unlock</button>
+        <label for="password"></label>
+        <input id="password" autocomplete="off" autofocus>
+        <button id="unlock" type="button">enter</button>
       </div>
       <p id="login-message" aria-live="polite"></p>
     </section>
@@ -144,13 +145,14 @@
       <pre id="board" aria-label="Connect Four board"></pre>
 
       <div id="scores">
+        scores:<br>
         public: <span id="public-score">0</span><br>
         owner: <span id="owner-score">0</span>
       </div>
 
       <div id="owner-controls" class="panel" hidden>
         <div class="row">
-          <label for="column">column:</label>
+          <label for="column">col:</label>
           <input
             id="column"
             type="number"
