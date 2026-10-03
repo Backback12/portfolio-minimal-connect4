@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Connect Four Owner</title>
+  <style>
+    :root {
+      font-family: Courier, monospace;
+      background: #000;
+      color: #008800;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      background: #000;
+      color: #00FF00;
+      display: grid;
+      place-items: center;
+    }
+
+    main {
+      width: min(94vw, 720px);
+      text-align: center;
+    }
+
+    h1,
+    p,
+    pre {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    .panel {
+      display: grid;
+      gap: 0.8rem;
+      justify-items: center;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    input,
+    button {
+      font: inherit;
+      color: #00ff66;
+      background: #000;
+      border: 1px solid #00ff66;
+      border-radius: 0;
+    }
+
+    input {
+      width: 18ch;
+      padding: 0.35rem 0.5rem;
+      outline: none;
+    }
+
+    input:focus {
+      box-shadow: 0 0 0 1px #00ff66;
+    }
+
+    button {
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+    }
+
+    button:hover,
+    button:focus-visible {
+      background: #00ff66;
+      color: #000;
+      outline: none;
+    }
+
+    #status {
+      min-height: 1.5em;
+      font-size: clamp(1rem, 2.4vw, 1.25rem);
+    }
+
+    #scores {
+      line-height: 1.5;
+    }
+
+    #board {
+      white-space: pre;
+      line-height: 1.4;
+      font-size: clamp(1rem, 3.5vw, 1.6rem);
+      letter-spacing: 0;
+      min-height: 9.8em;
+      margin: 0.5rem 0;
+    }
+
+    #message {
+      min-height: 1.5em;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="login-panel" class="panel" aria-labelledby="login-title">
+      <h1 id="login-title">Connect Four Owner</h1>
+      <div class="row">
+        <label for="password">pwd:</label>
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          autofocus
+        >
+        <button id="unlock" type="button">unlock</button>
+      </div>
+      <p id="login-message" aria-live="polite"></p>
+    </section>
+
+    <section id="game-panel" class="panel" hidden>
+      <h1 id="status">Connecting...</h1>
+
+      <pre id="board" aria-label="Connect Four board"></pre>
+
+      <div id="scores">
+        public: <span id="public-score">0</span><br>
+        owner: <span id="owner-score">0</span>
+      </div>
+
+      <div id="owner-controls" class="panel" hidden>
+        <div class="row">
+          <label for="column">column:</label>
+          <input
+            id="column"
+            type="number"
+            min="0"
+            max="6"
+            step="1"
+            inputmode="numeric"
+            autocomplete="off"
+          >
+          <button id="move" type="button">place</button>
+        </div>
+      </div>
+
+      <p id="message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script>
+    // Replace these placeholders from your deployment environment at build time.
+    // These are NOT runtime environment variables in a plain static HTML file.
+    window.OWNER_CONFIG = {
+      supabaseUrl: "https://rlgsubrivykkztiqxicy.supabase.co",
+      publishableKey: "sb_publishable_VJZO17aBIoNlWwZ8-Q6fRA_1YJiY-zx",
+      passwordHash: "61be55a8e2f6b4e172338bddf184d6dbee29c98853e0a0485ecee7f27b9af0b4"
+    };
+  </script>
+  <script type="module" src="./owner.js"></script>
+</body>
+</html>
